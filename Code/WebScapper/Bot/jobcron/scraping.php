@@ -136,6 +136,7 @@ function ws_test_job_url($home_url, $based_url, $xpath)
 	}
 	return $links;
 }
+//test detail
 function ws_test_detail_job($url, $job, $company, $location, $description, $salary, $requirement, $benifit, $expired, $tag, $cookie)
 {
 	global $jobModel;
