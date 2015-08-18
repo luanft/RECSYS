@@ -250,5 +250,6 @@ CREATE TABLE IF NOT EXISTS `job_log` (
   `EvenTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `PageUrl` text NOT NULL,
   `Error` text NOT NULL,
-  `Checked` tinyint(1) NOT NULL DEFAULT '0'
+  `Checked` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`EvenTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
