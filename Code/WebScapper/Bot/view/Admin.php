@@ -1,6 +1,16 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-require_once 'TestGUI.php';
+require_once $_SERVER['DOCUMENT_ROOT']."/model/Model.php";
+function showLog()
+{
+	$log= new LogJobModel();
+	$table= $log->get_log();
+	foreach ($table as $row){
+			
+		echo $row['EvenTime']." ".$row['PageUrl']." ".$row['Error']."<br>";
+	}
+	//return count($table);
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -108,6 +118,7 @@ $(document).ready(function(){
 		
 		$("#log_pattern").hide();
 		$("#div_result").html("Resolved all");
+		$.post("AdminTool.php",{func:"updateLog"});
 	});
 	//test home
 	$('#form_get_link').submit(function () {
@@ -146,14 +157,6 @@ $(document).ready(function(){
 	    
 	    return false;	    
 	});
-
-
-
-	
-
-
-
-
 
 
 	//form save xpath
@@ -278,7 +281,7 @@ $(document).ready(function(){
 					<input id="gl_xpath" type="text" name="txt_gl_xpath"> <input
 						type="submit" name="btn_test" value="Test pattern">
 				</form>
-				</p>
+				
 				<p></p>
 			</div>
 
@@ -320,7 +323,7 @@ $(document).ready(function(){
 				<form action="" method="" id="form_edit_xpath">
 
 					<h3>Home Url</h3>
-					<input id="ed_home_url" " type="text"> <input type="submit"
+					<input id="ed_home_url"  type="text"> <input type="submit"
 						name="btn_edit" value="Edit XPath">
 				</form>
 
@@ -399,8 +402,8 @@ $(document).ready(function(){
 			</div>
 			<div id= 'log_pattern'>
 				<form id= 'form_test_xpath' method="" action="">
-				<?php $log= new TestGUI(); $log->showLog()?>
-				<a id= 'resolved_log' href='#'> resolved</a>
+				<?php showLog()?>
+				<a id= 'resolved_log' href='#'> Resolve</a>
 				</form>
 			</div>
 			<!-- result -->

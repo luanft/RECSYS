@@ -9,9 +9,11 @@ require_once $_SERVER ["DOCUMENT_ROOT"].'/lib/xpath.php';
 class AdminController
 {
 	private $xpathModel;
+	private $logModel;
 	public function __construct()
 	{
 		$this->xpathModel = new XPathModel();
+		$this->logModel = new LogJobModel();
 	}
 	
 	public function testHomePattern()
@@ -126,6 +128,10 @@ class AdminController
 			
 		}
 		return false;
+	}
+	public function updateLog()
+	{
+		$this->logModel->updateChecked();
 	}
 }
 

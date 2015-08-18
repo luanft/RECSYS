@@ -1,10 +1,12 @@
 <?php
-$root = 'E:/JOBS_RECOMMENDATION/trunk/SourceCode/Bot/WebScraper/';
-require_once $root . '/jobscron/scraping.php';
+$root = 'E:\SOLUTION\Java\RECSYS\trunk\Code\WebScapper\Bot';
+require_once $root . '\jobcron\scraping.php';
 $page_count = 60;
 ws_init_system ();
 ws_login_to_webserver ( $xpathData );
+
 foreach ( $xpathData as $row ) {
+	
 	// for each page
 	for($i = 0; $i < $page_count; $i ++) {
 		// get all job urls in page

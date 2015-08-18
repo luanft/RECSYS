@@ -258,10 +258,10 @@ class LogJobModel extends Model
 		$this->connection->close();
 		return $data;
 	}
-	public function updateChecked($EventTime)
+	public function updateChecked()
 	{
 		$this->connection->connect();
-		$sql= "Update `job_log` set Checked= 1 where EvenTime=".$EventTime;
+		$sql= "Update `job_log` set Checked= 1";
 		$this->connection->write($sql);
 		$this->connection->close();
 	}
