@@ -1,0 +1,23 @@
+<?php
+$root = 'E:/RECSYS/trunk/Code/WebCrawler/Bot';
+require_once $root .'/jobcron/scraping.php';
+$page_count = 1;
+ws_init_system ();
+ws_login_to_webserver ( $xpathData );
+foreach ( $xpathData as $row ) {
+	// for each page
+	for($i = 0; $i < $page_count; $i ++) {
+		// get all job urls in page
+		$ret = ws_get_job_url ( $row ['home_url'] . "$i", $row ['base_url'], $row ['xpath_code'] );
+		// get usage data & save
+		foreach ( $ret as $url ) {
+			$cookie = "";
+			if ($row ['login_url'] != '') {
+				$cookie = "cookie" . $row ['id'] . ".txt";
+			}
+			ws_get_detail_job($url, $row ['job_xpath'], $row ['company_xpath'], $row ['location_xpath'], $row ['description_xpath'], $row ['salary_xpath'], $row ['requirement_xpath'], $row ['benifit_xpath'], $row ['expired_xpath'], $row ['tags_xpath'], $cookie, $row['category'] );
+		}
+	}
+}
+
+?>
